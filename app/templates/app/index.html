@@ -1,24 +1,13 @@
+{% extends "app/base.html" %}
+
 {% load static %}
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'app/index.css' %}">
+<title>Prayer Warrior</title>
+{% endblock %}
 
-<link rel="stylesheet" href="{% static 'app/style.css' %}">
+{% block content %}
 
-{% if item_list %}
-    <ul>
-    {% for item in item_list %}
-        <li><a href="{% url 'app:detail' item.id %}">{{ item.item_name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No items</p>
-{% endif %}
+<blockquote>"Our Father in heaven, hallowed be your name, your kingdom come, your will be done, on earth as it is in heaven. Give us today our daily bread. And forgive us our debts, as we also have forgiven our debtors. And lead us not into temptation, but deliver us from the evil one."</blockquote>
 
-<form action="{% url 'app:index' %}" method="post">
-{% csrf_token %}
-    {{ form }}
-<input type="submit">
-</form>
-
-<form action="{% url 'logout' %}" method="post">
-{% csrf_token %}
-    <input type="submit" value="Logout">
-</form>
+{% endblock %}

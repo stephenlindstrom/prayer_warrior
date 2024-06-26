@@ -1,0 +1,9 @@
+blockquote {
+    background-image: url(images/prayer-1.jpg);
+    padding: 20px 50px;
+    margin: 50px auto;
+    border: 2px solid black;
+    color: black;
+    width: 50vw;
+    font-size: 3rem;
+}
