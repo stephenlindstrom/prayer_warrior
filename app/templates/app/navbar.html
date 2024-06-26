@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+
+{% load static %}
+
+{% block navbar-style %}
+<link rel="stylesheet" href="{% static 'app/navbar.css' %}">
+{% endblock %}
+
+{% block navbar %}
+<header>
+    <h1 id="nav-title">Prayer Warrior</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'app:personal-prayer' %}">Personal Prayers</a></li>
+            <li><a href="#">Group Prayers</a></li>
+            <li><a href="#">Answered Prayers</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock %}

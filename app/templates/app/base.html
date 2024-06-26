@@ -1,26 +1,15 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'app/style.css' %}">
-    {% block extrahead %} {% endblock %}
+    {% block title %} {% endblock %}
+    {% block navbar-style %} {% endblock %}
+    {% block page-style %} {% endblock %}
 </head>
 <body>
-    <header>
-        <h1 id="nav-title">Prayer Warrior</h1>
-        <nav>
-            <ul>
-                <li><a href="{% url 'app:personal-prayer' %}">Personal Prayers</a></li>
-                <li><a href="#">Group Prayers</a></li>
-                <li><a href="#">Answered Prayers</a></li>
-            </ul>
-        </nav>
-    </header>
-    {% block content %}
+    {% block navbar %} {% endblock %}
 
-    {% endblock %}
-
+    {% block content %} {% endblock %}  
 </body>
 </html>

@@ -1,10 +1,8 @@
-{% extends "app/base.html" %}
+{% extends "app/navbar.html" %}
 
 {% load static %}
-{% block extrahead %}
-<link rel="stylesheet" href="{% static 'app/index.css' %}">
-<title>Prayer Warrior</title>
-{% endblock %}
+{% block title %} <title>Prayer Warrior</title> {% endblock %}
+{% block page-style %} <link rel="stylesheet" href="{% static 'app/index.css' %}"> {% endblock %}
 
 {% block content %}
 
