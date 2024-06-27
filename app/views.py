@@ -34,6 +34,19 @@ class PersonalPrayerView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
+class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    model = Item
+    fields = ["item_name"]
+    template_name = "app/prayer-request.html"
+    login_url = reverse_lazy("login")
+    success_url = reverse_lazy("app:prayer-request")
+    success_message = "Your request was successfully added."
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
 class DetailView(generic.DetailView):
     model = Item
     template_name = "app/detail.html"

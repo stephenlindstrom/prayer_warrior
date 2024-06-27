@@ -1,0 +1,17 @@
+{% extends "app/navbar.html" %}
+
+{% block content %}
+
+<form action="{% url 'app:prayer-request' %}" method="post">
+{% csrf_token %}
+{{ form }}
+<input type="submit">
+</form>
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

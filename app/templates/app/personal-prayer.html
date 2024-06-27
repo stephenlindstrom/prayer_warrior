@@ -1,7 +1,6 @@
-{% load static %}
+{% extends "app/navbar.html" %}
 
-<link rel="stylesheet" href="{% static 'app/navbar.css' %}">
-
+{% block content %}
 {% if item_list %}
     <ul>
     {% for item in item_list %}
@@ -22,3 +21,4 @@
 {% csrf_token %}
     <input type="submit" value="Logout">
 </form>
+{% endblock %}
