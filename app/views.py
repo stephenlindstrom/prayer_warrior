@@ -13,25 +13,20 @@ from django.views.generic.edit import CreateView
 from .forms import RegistrationForm
 from .models import Item
 
-class IndexView(generic.TemplateView):
+class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name="app/index.html"
-
-
-class PersonalPrayerView(LoginRequiredMixin, CreateView):
-    model = Item
-    fields = ["item_name"]
-    template_name = "app/personal-prayer.html"
     login_url = reverse_lazy("login")
-    success_url = reverse_lazy("app:personal-prayer")
+
+
+class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
+    model = Item
+    login_url = reverse_lazy("login")
+    template_name = "app/personal-prayer.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["item_list"] = self.model.objects.filter(user=self.request.user)
         return context
-    
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 
 class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
