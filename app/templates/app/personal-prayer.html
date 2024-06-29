@@ -1,10 +1,10 @@
 {% extends "app/navbar.html" %}
 
 {% block content %}
-{% if item_list %}
+{% if prayer_request_list %}
     <ul>
-    {% for item in item_list %}
-        <li><a href="{% url 'app:detail' item.id %}">{{ item.item_name }}</a></li>
+    {% for prayer_request in prayer_request_list %}
+        <li><a href="{% url 'app:detail' prayer_request.id %}">{{ prayer_request.content }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

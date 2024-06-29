@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Item, PrayerRequest
+from .models import PrayerRequest
 
 class PrayerRequestModelTests(TestCase):
     def setUp(self):
@@ -25,11 +25,11 @@ class PrayerRequestModelTests(TestCase):
         prayer_request = PrayerRequest(datetime=current_datetime, user=user, content="prayer request", answered=True)
         self.assertIs(prayer_request.datetime, current_datetime)
 
-    def test_prayer_request_answered(self):
+    def test_prayer_request_answered_default(self):
         user = User.objects.get(username="testuser")
-        prayer_request = PrayerRequest(datetime=datetime.now(), user=user, content="prayer request", answered=True)
-        self.assertIs(prayer_request.answered, True)
-        
+        prayer_request = PrayerRequest(datetime=datetime.now(), user=user, content="prayer request")
+        self.assertIs(prayer_request.answered, False)
+
 
 class PersonalPrayerViewTests(TestCase):
     def setUp(self):
@@ -52,27 +52,27 @@ class PersonalPrayerViewTests(TestCase):
     def test_one_prayer(self):
         self.client.login(username="testuser", password="y0lo5432")
         user = User.objects.get(username="testuser")
-        Item.objects.create(item_name="prayer", user=user)
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request")
         response = self.client.get(reverse("app:personal-prayer"))
-        self.assertContains(response, "prayer", status_code=200)
+        self.assertContains(response, "prayer request", status_code=200)
 
     def test_multiple_prayers_same_user(self):
         self.client.login(username="testuser", password="y0lo5432")
         user = User.objects.get(username="testuser")
-        prayer1 = Item.objects.create(item_name="prayer1", user=user)
-        prayer2 = Item.objects.create(item_name="prayer2", user=user)
+        prayer_request1 = PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request1")
+        prayer_request2 = PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request2")
         response = self.client.get(reverse("app:personal-prayer"))
-        self.assertQuerySetEqual(list(response.context["item_list"]), [prayer1, prayer2])
+        self.assertQuerySetEqual(list(response.context["prayer_request_list"]), [prayer_request1, prayer_request2])
 
     def test_multiple_prayers_different_users(self):
         self.client.login(username="testuser", password="y0lo5432")
         current_user = User.objects.get(username="testuser")
         user2 = User.objects.get(username="testuser2")
-        prayer1 = Item.objects.create(item_name="prayer1", user=current_user)
-        prayer2 = Item.objects.create(item_name="prayer2", user=user2)
-        prayer3 = Item.objects.create(item_name="prayer2", user=current_user)
+        prayer_request1 = PrayerRequest.objects.create(datetime=datetime.now(), user=current_user, content="prayer request1")
+        prayer_request2 = PrayerRequest.objects.create(datetime=datetime.now(), user=user2, content="prayer request2")
+        prayer_request3 = PrayerRequest.objects.create(datetime=datetime.now(), user=current_user, content="prayer request3")
         response = self.client.get(reverse("app:personal-prayer"))
-        self.assertQuerySetEqual(list(response.context["item_list"]), [prayer1, prayer3])
+        self.assertQuerySetEqual(list(response.context["prayer_request_list"]), [prayer_request1, prayer_request3])
 
 class IndexViewTests(TestCase):
     def setUp(self):

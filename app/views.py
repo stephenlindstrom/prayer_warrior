@@ -11,7 +11,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView
 
 from .forms import RegistrationForm
-from .models import Item
+from .models import PrayerRequest
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name="app/index.html"
@@ -19,19 +19,19 @@ class IndexView(LoginRequiredMixin, generic.TemplateView):
 
 
 class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
-    model = Item
+    model = PrayerRequest
     login_url = reverse_lazy("login")
     template_name = "app/personal-prayer.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["item_list"] = self.model.objects.filter(user=self.request.user)
+        context["prayer_request_list"] = self.model.objects.filter(user=self.request.user)
         return context
 
 
 class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
-    model = Item
-    fields = ["item_name"]
+    model = PrayerRequest
+    fields = ["content"]
     template_name = "app/prayer-request.html"
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("app:prayer-request")
@@ -43,7 +43,7 @@ class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 
 class DetailView(generic.DetailView):
-    model = Item
+    model = PrayerRequest
     template_name = "app/detail.html"
 
 
