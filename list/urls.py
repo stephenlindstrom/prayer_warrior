@@ -22,5 +22,5 @@ urlpatterns = [
     path("app/", include("app.urls")),
     path("admin/", admin.site.urls),
     path("login/", views.LoginView.as_view(template_name="app/login.html", next_page="app:index"), name="login"),
-    path("logout/", views.LogoutView.as_view(next_page="login"), name="logout"),
+    path("logout/", views.LogoutView.as_view(), name="logout"),
 ]
