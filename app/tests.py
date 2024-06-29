@@ -1,14 +1,35 @@
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Item
+from .models import Item, PrayerRequest
 
-class ItemModelTests(TestCase):
-    def test_item_name(self):
-        item = Item(item_name="test item")
-        self.assertIs(item.item_name, "test item")
+class PrayerRequestModelTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        
+    def test_prayer_request_content(self):
+        user = User.objects.get(username="testuser")
+        prayer_request = PrayerRequest(datetime=datetime.now(), user=user, content="prayer request", answered=True)
+        self.assertIs(prayer_request.content, "prayer request")
 
+    def test_prayer_request_user(self):
+        user = User.objects.get(username="testuser")
+        prayer_request = PrayerRequest(datetime=datetime.now(), user=user, content="prayer request", answered=True)
+        self.assertIs(prayer_request.user, user)
+
+    def test_prayer_request_datetime(self):
+        user = User.objects.get(username="testuser")
+        current_datetime= datetime.now()
+        prayer_request = PrayerRequest(datetime=current_datetime, user=user, content="prayer request", answered=True)
+        self.assertIs(prayer_request.datetime, current_datetime)
+
+    def test_prayer_request_answered(self):
+        user = User.objects.get(username="testuser")
+        prayer_request = PrayerRequest(datetime=datetime.now(), user=user, content="prayer request", answered=True)
+        self.assertIs(prayer_request.answered, True)
+        
 
 class PersonalPrayerViewTests(TestCase):
     def setUp(self):

@@ -7,3 +7,12 @@ class Item(models.Model):
 
     def __str__(self):
         return self.item_name
+    
+class PrayerRequest(models.Model):
+    datetime = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    answered = models.BooleanField()
+
+    def __str__(self):
+        return self.content
