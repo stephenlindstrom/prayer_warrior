@@ -1,6 +1,10 @@
 {% extends "app/navbar.html" %}
 
+{% load static %}
+{% block page-style %} <link rel="stylesheet" href="{% static 'app/index.css' %}"> {% endblock %}
+
 {% block content %}
+<h1>Personal Prayer Requests</h1>
 {% if prayer_request_list %}
     <ul>
     {% for prayer_request in prayer_request_list %}
@@ -11,14 +15,4 @@
     <p>No items</p>
 {% endif %}
 
-<form action="{% url 'app:personal-prayer' %}" method="post">
-{% csrf_token %}
-    {{ form }}
-<input type="submit">
-</form>
-
-<form action="{% url 'logout' %}" method="post">
-{% csrf_token %}
-    <input type="submit" value="Logout">
-</form>
 {% endblock %}
