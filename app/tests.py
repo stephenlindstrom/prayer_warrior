@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.test import TestCase
 from django.urls import reverse
 
@@ -98,3 +98,24 @@ class RegistrationViewTests(TestCase):
         password2 = "y0lo5432"
         response = self.client.post(reverse("app:register"), {"username": username, "password1": password1, "password2": password2})
         self.assertRedirects(response, reverse("login"))
+
+
+class CreateGroupViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+
+    def test_user_not_logged_in(self):
+        response = self.client.get(reverse("app:create-group"))
+        self.assertRedirects(response, "/login/?next=/app/create-group/")
+
+    def test_successful_group_creation(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.post(reverse("app:create-group"), {"name": "Test Group"})
+        self.assertRedirects(response, reverse("app:create-group"))
+
+    def test_user_in_new_group(self):
+        user = User.objects.get(username="testuser")
+        self.client.login(username="testuser", password="y0lo5432")
+        self.client.post(reverse("app:create-group"), {"name": "Test Group"})
+        self.assertTrue(user.groups.filter(name='Test Group').exists())
+        

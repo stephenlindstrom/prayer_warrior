@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic
@@ -47,5 +47,18 @@ class RegistrationView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("login")
     form_class = RegistrationForm
     success_message = "Your profile was created successfully"
+
+
+class CreateGroupView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
+    model = Group
+    fields = ["name"]
+    login_url = reverse_lazy("login")
+    success_url = reverse_lazy("app:create-group")
+    template_name = "app/create-group.html"
+
+    def form_valid(self, form):
+        group = form.save()
+        self.request.user.groups.add(group)
+        return super().form_valid(form)
 
 
