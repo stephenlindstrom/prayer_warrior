@@ -42,14 +42,10 @@ class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class DetailView(generic.DetailView):
-    model = PrayerRequest
-    template_name = "app/detail.html"
-
-
 class RegistrationView(SuccessMessageMixin, CreateView):
     template_name= "app/register.html"
     success_url = reverse_lazy("login")
     form_class = RegistrationForm
     success_message = "Your profile was created successfully"
+
 

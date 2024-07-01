@@ -1,14 +1,14 @@
 {% extends "app/navbar.html" %}
 
 {% load static %}
-{% block page-style %} <link rel="stylesheet" href="{% static 'app/index.css' %}"> {% endblock %}
+{% block page-style %} <link rel="stylesheet" href="{% static 'app/personal-prayer.css' %}"> {% endblock %}
 
 {% block content %}
 <h1>Personal Prayer Requests</h1>
 {% if prayer_request_list %}
-    <ul>
+    <ul class="flex-container">
     {% for prayer_request in prayer_request_list %}
-        <li><a href="{% url 'app:detail' prayer_request.id %}">{{ prayer_request.content }}</a></li>
+        <li class="prayer-request">{{ prayer_request.content }}</li>
     {% endfor %}
     </ul>
 {% else %}

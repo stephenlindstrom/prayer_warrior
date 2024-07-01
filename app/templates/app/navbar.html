@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{% static 'app/navbar.css' %}">
 {% endblock %}
 
+{% block footer}
+
 {% block navbar %}
 <header>
     <h1 id="nav-title"><a href="{% url 'app:index' %}">Prayer Warrior</a></h1>
@@ -24,4 +26,13 @@
         </ul>
     </nav>
 </header>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <ul>
+        <li>Prayer Warrior</li>
+        <li>2024</li>
+    </ul>
+</footer>
 {% endblock %}

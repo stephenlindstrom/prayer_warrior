@@ -1,15 +1,28 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prayer Warrior</title>
+    <link rel="stylesheet" href="{% static 'app/base.css' %}">
     {% block navbar-style %} {% endblock %}
     {% block page-style %} {% endblock %}
 </head>
 <body>
-    {% block navbar %} {% endblock %}
+    <div id="page-container">
+        <div class="navbar">
+        {% block navbar %} {% endblock %}
+        </div>
 
-    {% block content %} {% endblock %}  
+        <div id="content">
+        {% block content %} {% endblock %}
+        </div>
+        
+        <div id="footer">
+        {% block footer %} {% endblock %}
+        </div>
+    </div>
 </body>
 </html>
