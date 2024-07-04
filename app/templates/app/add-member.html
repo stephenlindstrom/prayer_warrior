@@ -1,5 +1,16 @@
 {% extends "app/navbar.html" %}
 
 {% block content %}
-Hello
+<form method="post" action="{% url 'app:add-member' group_id %}">
+    {% csrf_token %}
+{{ form }}
+<input type="submit">
+</form>
+
+{% if messages %}
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+{% endif %}
+
 {% endblock %}

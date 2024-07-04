@@ -123,6 +123,7 @@ class CreateGroupViewTests(TestCase):
 class AddMemberViewTests(TestCase):
     def setUp(self):
         User.objects.create_user(username="testuser", password="y0lo5432")
+        User.objects.create_user(username="testuser2", password="y0lo4321")
         Group.objects.create(name="testgroup")
 
     def test_user_not_logged_in(self):
@@ -141,4 +142,33 @@ class AddMemberViewTests(TestCase):
         user.groups.add(group)
         response = self.client.get(reverse("app:add-member", kwargs={"group_id":1}))
         self.assertEqual(response.status_code, 200)
+    
+    def test_post_add_member(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group = Group.objects.get(name="testgroup")
+        user.groups.add(group)
+        self.client.post(reverse("app:add-member", kwargs={"group_id":1}), {"username": "testuser2"})
+        user2 = User.objects.get(username="testuser2")
+        self.assertTrue(user2.groups.filter(name="testgroup").exists())
+
+    def test_username_not_valid(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group = Group.objects.get(name="testgroup")
+        user.groups.add(group)
+        response = self.client.post(reverse("app:add-member", kwargs={"group_id":1}), {"username": "testuser3"}, follow=True)
+        self.assertRedirects(response, reverse("app:add-member", kwargs={"group_id":1}))
+        self.assertContains(response, "Username does not exist")
+
+
+class GroupListViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        Group.objects.create(name="testgroup")
+
+    def test_user_not_logged_in(self):
+        response = self.client.get(reverse("app:group-prayers"))
+        self.assertRedirects(response, "/login/?next=/app/group-prayers/")
+        
 
