@@ -123,6 +123,7 @@ class CreateGroupViewTests(TestCase):
 class AddMemberViewTests(TestCase):
     def setUp(self):
         User.objects.create_user(username="testuser", password="y0lo5432")
+        Group.objects.create(name="testgroup")
 
     def test_user_not_logged_in(self):
         response = self.client.get(reverse("app:add-member", kwargs={'group_id':1}))
@@ -132,3 +133,12 @@ class AddMemberViewTests(TestCase):
         self.client.login(username="testuser", password="y0lo5432")
         response = self.client.get(reverse("app:add-member", kwargs={'group_id':1}))
         self.assertEqual(response.status_code, 403)
+
+    def test_get_user_member_of_group(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group = Group.objects.get(name="testgroup")
+        user.groups.add(group)
+        response = self.client.get(reverse("app:add-member", kwargs={"group_id":1}))
+        self.assertEqual(response.status_code, 200)
+
