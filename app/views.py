@@ -3,7 +3,7 @@ from django.forms import BaseModelForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse, Http404
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User, Group
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
@@ -61,4 +61,12 @@ class CreateGroupView(LoginRequiredMixin, CreateView, SuccessMessageMixin):
         self.request.user.groups.add(group)
         return super().form_valid(form)
 
+
+class AddMemberView(LoginRequiredMixin, UserPassesTestMixin, generic.TemplateView):
+    login_url = reverse_lazy("login")
+    template_name = "app/add-member.html"
+
+    def test_func(self):
+        group_id = self.kwargs["group_id"]
+        return self.request.user.groups.filter(id=group_id).exists()
 
