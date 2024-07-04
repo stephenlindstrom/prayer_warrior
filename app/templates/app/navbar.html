@@ -15,7 +15,7 @@
         <ul>
             <li><a href="{% url 'app:prayer-request' %}">Add Prayer Request</a></li>
             <li><a href="{% url 'app:personal-prayer' %}">Personal Prayers</a></li>
-            <li><a href="#">Group Prayers</a></li>
+            <li><a href="{% url 'app:group-prayers' %}">Group Prayers</a></li>
             <li><a href="#">Answered Prayers</a></li>
             <li>
                 <form action="{% url 'logout' %}" method="post">

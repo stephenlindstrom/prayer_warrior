@@ -165,10 +165,51 @@ class AddMemberViewTests(TestCase):
 class GroupListViewTests(TestCase):
     def setUp(self):
         User.objects.create_user(username="testuser", password="y0lo5432")
+        User.objects.create_user(username="testuser2", password="y0lo4321")
         Group.objects.create(name="testgroup")
+        Group.objects.create(name="testgroup2")
+        Group.objects.create(name="testgroup3")
 
     def test_user_not_logged_in(self):
         response = self.client.get(reverse("app:group-prayers"))
         self.assertRedirects(response, "/login/?next=/app/group-prayers/")
+
+    def test_user_not_in_any_groups(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:group-prayers"))
+        self.assertContains(response, "You do not belong to any groups")
+
+    def test_user_in_one_group(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group = Group.objects.get(name="testgroup")
+        user.groups.add(group)
+        response = self.client.get(reverse("app:group-prayers"))
+        self.assertContains(response, group.name)
+
+    def test_user_in_multiple_groups(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group1 = Group.objects.get(name="testgroup")
+        group2 = Group.objects.get(name="testgroup2")
+        user.groups.add(group1)
+        user.groups.add(group2)
+        response = self.client.get(reverse("app:group-prayers"))
+        self.assertQuerySetEqual(list(response.context["group_list"]), [group1, group2])
+    
+    def test_user_in_some_not_all_groups(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user1 = User.objects.get(username="testuser")
+        user2 = User.objects.get(username="testuser2")
+        group1 = Group.objects.get(name="testgroup")
+        group2 = Group.objects.get(name="testgroup2")
+        group3 = Group.objects.get(name="testgroup3")
+        user1.groups.add(group1)
+        user1.groups.add(group3)
+        user2.groups.add(group2)
+        response = self.client.get(reverse("app:group-prayers"))
+        self.assertQuerySetEqual(list(response.context["group_list"]), [group1, group3])
+
+
         
 

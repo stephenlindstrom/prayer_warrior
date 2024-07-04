@@ -1,0 +1,11 @@
+{% extends "app/navbar.html" %}
+
+{% block content %}
+    {% if group_list %}
+    {% for group in group_list %}
+        {{ group.name }}
+    {% endfor %}
+    {% else %}
+        You do not belong to any groups
+    {% endif %}
+{% endblock %}
