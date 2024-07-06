@@ -1,0 +1,6 @@
+{% extends "app/navbar.html" %}
+
+{% block content %}
+    Group Prayers
+    <a href="{% url 'app:add-member' group.id %}"><button>Add Member</button></a>
+{% endblock %}

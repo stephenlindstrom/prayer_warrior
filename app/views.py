@@ -72,6 +72,15 @@ class GroupListView(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         context["group_list"] = self.request.user.groups.all()
         return context
+    
+class GroupDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailView):
+    model = Group
+    login_url = reverse_lazy("login")
+    template_name = "app/group-detail.html"
+
+    def test_func(self):
+        group_id = self.kwargs["pk"]
+        return self.request.user.groups.filter(id=group_id).exists()
 
 
 class AddMemberView(LoginRequiredMixin, UserPassesTestMixin, generic.FormView):

@@ -211,5 +211,32 @@ class GroupListViewTests(TestCase):
         self.assertQuerySetEqual(list(response.context["group_list"]), [group1, group3])
 
 
+class GroupDetailViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        User.objects.create_user(username="testuser2", password="y0lo4321")
+        Group.objects.create(name="testgroup")
+        Group.objects.create(name="testgroup2")
+        Group.objects.create(name="testgroup3")
+    
+    def test_user_not_logged_in(self):
+        response = self.client.get(reverse("app:group-detail", kwargs={"pk":1}))
+        self.assertRedirects(response, "/login/?next=/app/group-prayers/1/")
+
+    def test_user_not_in_group(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:group-detail", kwargs={"pk":1}))
+        self.assertEqual(response.status_code, 403)
+
+    def test_user_in_group(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        group = Group.objects.get(name="testgroup")
+        user.groups.add(group)
+        response = self.client.get(reverse("app:group-detail", kwargs={"pk":1}))
+        self.assertEqual(response.status_code, 200)
+        
+
+
         
 

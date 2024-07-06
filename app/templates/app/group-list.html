@@ -3,7 +3,7 @@
 {% block content %}
     {% if group_list %}
     {% for group in group_list %}
-        {{ group.name }}
+        <a href="{% url 'app:group-detail' group.id %} "> {{ group.name }} </a>
     {% endfor %}
     {% else %}
         You do not belong to any groups
