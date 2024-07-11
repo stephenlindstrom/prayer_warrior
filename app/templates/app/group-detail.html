@@ -2,5 +2,12 @@
 
 {% block content %}
     Group Prayers
+    {% if prayer_list %}
+    {% for prayer in prayer_list %}
+        <p>{{ prayer.content }}</p>
+    {% endfor %}
+    {% else %}
+        No prayer requests
+    {% endif %}
     <a href="{% url 'app:add-member' group.id %}"><button>Add Member</button></a>
 {% endblock %}

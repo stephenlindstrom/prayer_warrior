@@ -11,8 +11,8 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView
 
-from .forms import RegistrationForm, AddMemberForm
-from .models import PrayerRequest
+from .forms import RegistrationForm, AddMemberForm, PrayerRequestForm
+from .models import PrayerRequest, GroupPrayerManager
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name="app/index.html"
@@ -32,14 +32,24 @@ class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
 
 class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = PrayerRequest
-    fields = ["content"]
+    form_class = PrayerRequestForm
     template_name = "app/prayer-request.html"
     login_url = reverse_lazy("login")
     success_url = reverse_lazy("app:prayer-request")
     success_message = "Your request was successfully added."
 
+    def get_form_kwargs(self):
+        kwargs = super(AddPrayerRequestView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
     def form_valid(self, form):
         form.instance.user = self.request.user
+        self.object = form.save()
+        groups = form.cleaned_data["groups"]
+        if groups:
+            for group in groups:
+                GroupPrayerManager.objects.create(prayer_request=self.object, group=group)
         return super().form_valid(form)
 
 
@@ -81,7 +91,15 @@ class GroupDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailVie
     def test_func(self):
         group_id = self.kwargs["pk"]
         return self.request.user.groups.filter(id=group_id).exists()
-
+    
+    def get_context_data(self, **kwargs):
+        group_id = self.kwargs["pk"]
+        context = super().get_context_data(**kwargs)
+        prayer_keys = GroupPrayerManager.objects.filter(group=group_id)
+        context["prayer_list"] = []
+        for prayer_key in prayer_keys:
+            context["prayer_list"].append(prayer_key.prayer_request)
+        return context
 
 class AddMemberView(LoginRequiredMixin, UserPassesTestMixin, generic.FormView):
     login_url = reverse_lazy("login")
