@@ -2,15 +2,19 @@
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
 }
 
 header {
+    position: fixed;
+    top: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 20px 50px;
     box-shadow: 0 1px 8px #ddd;
     background-color: var(--primary-color);
+    width: 100%;
 }
 
 #nav-title {
@@ -32,6 +36,10 @@ header a {
 
 header a:hover {
     color: #b2bfdb;
+}
+
+header a:visited {
+    color: var(--secondary-color);
 }
 
 footer ul {

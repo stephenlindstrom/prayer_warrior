@@ -1,11 +1,16 @@
 {% extends "app/navbar.html" %}
 
+{% load static %}
+{% block page-style %} <link rel="stylesheet" href="{% static 'app/group-detail.css' %}">{% endblock %}
+
 {% block content %}
-    Group Prayers
+    <h1>Group Prayers</h1>
     {% if prayer_list %}
+    <ul class="flex-container">
     {% for prayer in prayer_list %}
-        <p>{{ prayer.content }}</p>
+        <li class="prayer-request">{{ prayer.content }}</li>
     {% endfor %}
+    </ul>
     {% else %}
         No prayer requests
     {% endif %}

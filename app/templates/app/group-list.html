@@ -1,9 +1,14 @@
 {% extends "app/navbar.html" %}
 
+{% load static %}
+{% block page-style%}<link href="{% static 'app/group-list.css' %}" rel=stylesheet>{% endblock %}
 {% block content %}
+    <h1>Prayer Groups</h1>
     {% if group_list %}
     {% for group in group_list %}
-        <a href="{% url 'app:group-detail' group.id %} "> {{ group.name }} </a>
+        <ul class="flex-container">
+            <li class="group"><a href="{% url 'app:group-detail' group.id %} "> {{ group.name }} </a></li>
+        </ul>
     {% endfor %}
     {% else %}
         You do not belong to any groups
