@@ -57,7 +57,7 @@ class RegistrationView(SuccessMessageMixin, CreateView):
     template_name= "app/register.html"
     success_url = reverse_lazy("login")
     form_class = RegistrationForm
-    success_message = "Your profile was created successfully"
+    success_message = "Your profile was created successfully."
 
 
 class CreateGroupView(LoginRequiredMixin, CreateView, SuccessMessageMixin):

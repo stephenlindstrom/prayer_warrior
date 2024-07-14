@@ -1,44 +1,53 @@
 {% extends "app/base.html" %}
+{% load static %}
+
+{% block page-style %} <link href="{% static 'app/login.css' %}" rel="stylesheet"> {% endblock %}
 
 {% block content %}
-<h1>Login</h1>
+<div class="page-container">
+    <div class="flex-container">
+        <div class="logo">
+            <h1>Prayer Warrior</h1>
+            <div class="images">
+                <img src="{% static 'app/images/cross.svg' %}" alt="cross" width="100px">
+                <img src="{% static 'app/images/sword.svg' %}" alt="sword" width="100px">
+            </div>
+        </div>
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+        <div class="form-box">
+            <form method="post" action="{% url 'login' %}" class="login-info">
+            {% csrf_token %}
+                <input type="text" name="username" id="username" placeholder="Username" class="flex-item">
+                <input type="password" name="password" id="password" placeholder="Password" class="flex-item">
+                <button type="submit" class="flex-item">Log In</button>
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access</p>
-    
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+            <hr>
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-    <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-    </tr>
-</table>
+            <button><a href="{% url 'app:register' %}">Register</a></button>
 
-<input type="submit" value="Login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
+            <div class="messages">
+                {% if form.errors %}
+                <p>Your username and password didn't match.</p>
+                {% endif %}
 
-<a href="{% url 'app:register' %}">Register</a>
+                {% if next %}
+                    {% if user.is_authenticated %}
+                    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access</p>
+                    
+                    {% else %}
+                    <p>Please login to see this page.</p>
+                    {% endif %}
+                {% endif %}
 
-{% if messages %}
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
-{% endif %}
-
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
