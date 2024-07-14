@@ -1,11 +1,14 @@
 {% extends "app/navbar.html" %}
-
+{% load static %}
+{% block script %}
+    <script src="{% static 'app/javascript.js' %}"></script>
+{% endblock %}
 {% block content %}
-
-<form action="{% url 'app:prayer-request' %}" method="post">
+<style>#content{margin-top:7rem;}</style>
+<form action="{% url 'app:prayer-request' %}" method="post" id="prayer-request">
 {% csrf_token %}
 {{ form }}
-<input type="submit">
+<button type="submit" id="btn" onclick="disableButton()">Submit</button>
 </form>
 
 {% if messages %}

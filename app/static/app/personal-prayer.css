@@ -21,3 +21,21 @@ h1 {
     margin-top: 1rem;
     background-color: var(--secondary-color);
 }
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    margin-left: 1.5rem;
+    border-radius: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
