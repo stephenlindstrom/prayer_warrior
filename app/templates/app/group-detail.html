@@ -4,7 +4,11 @@
 {% block page-style %} <link rel="stylesheet" href="{% static 'app/group-detail.css' %}">{% endblock %}
 
 {% block content %}
-    <h1>Group Prayers</h1>
+    <div class="header">
+        <h1>Group Prayer Requests</h1>
+        <button id="pr-btn"><a href="{% url 'app:prayer-request' %}">Add request</a></button>
+        <button id="am-btn"><a href="{% url 'app:add-member' group.id %}">Add member</a></button>
+    </div>
     {% if prayer_list %}
     <ul class="flex-container">
     {% for prayer in prayer_list %}
@@ -14,5 +18,4 @@
     {% else %}
         No prayer requests
     {% endif %}
-    <a href="{% url 'app:add-member' group.id %}"><button>Add Member</button></a>
 {% endblock %}

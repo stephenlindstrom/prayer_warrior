@@ -6,7 +6,7 @@
 {% block content %}
 <div class="header">
     <h1>Personal Prayer Requests</h1>
-    <button><a href="{% url 'app:prayer-request' %}" title="Add request">+</a></button>
+    <button><a href="{% url 'app:prayer-request' %}">Add request</a></button>
 </div>
 {% if prayer_request_list %}
     <ul class="flex-container">
