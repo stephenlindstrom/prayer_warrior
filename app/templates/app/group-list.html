@@ -6,7 +6,9 @@
 <div class="page-container">
     <div class="header">
         <h1>Prayer Groups</h1>
-        <a href="{% url 'app:create-group' %}" class="add-button">Create group</a>
+        <div class="buttons">
+            <a href="{% url 'app:create-group' %}" class="add-button">Create group</a>
+        </div>
     </div>
     {% if group_list %}
     {% for group in group_list %}    

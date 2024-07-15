@@ -7,7 +7,9 @@
 <div class="page-container">
     <div class="header">
         <h1>Personal Prayer Requests</h1>
-        <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
+        <div class="buttons">
+            <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
+        </div>
     </div>
 {% if prayer_request_list %}
     <ul class="flex-container">

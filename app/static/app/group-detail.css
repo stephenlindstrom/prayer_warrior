@@ -35,18 +35,18 @@ h1 {
     width: 80vw;
 }
 
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+
 .header > *:nth-child(1) {
     grid-column-start: 2;
 }
 
 .header > *:nth-child(2) {
     margin-left: auto;
-}
-
-
-#pr-btn, #am-btn {
-    padding: 5px;
-    border-radius: 5px;
 }
 
 a {
