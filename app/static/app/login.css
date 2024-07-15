@@ -107,6 +107,10 @@ hr {
         margin: 5rem 0 0 0;
     }
 
+    h1 {
+        text-align: center;
+    }
+
     .form-box {
         margin: 2rem 0 0 0;
     }

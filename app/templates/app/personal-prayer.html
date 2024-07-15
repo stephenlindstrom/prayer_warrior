@@ -4,10 +4,11 @@
 {% block page-style %} <link rel="stylesheet" href="{% static 'app/personal-prayer.css' %}"> {% endblock %}
 
 {% block content %}
-<div class="header">
-    <h1>Personal Prayer Requests</h1>
-    <button><a href="{% url 'app:prayer-request' %}">Add request</a></button>
-</div>
+<div class="page-container">
+    <div class="header">
+        <h1>Personal Prayer Requests</h1>
+        <button><a href="{% url 'app:prayer-request' %}">Add request</a></button>
+    </div>
 {% if prayer_request_list %}
     <ul class="flex-container">
     {% for prayer_request in prayer_request_list %}
@@ -17,5 +18,5 @@
 {% else %}
     <p>No items</p>
 {% endif %}
-
+</div>
 {% endblock %}

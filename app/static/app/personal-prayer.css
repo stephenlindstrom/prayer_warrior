@@ -23,9 +23,18 @@ h1 {
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    justify-items: center;
+    width: 80vw;
+}
+
+.header > *:nth-child(1) {
+    grid-column-start: 2;
+}
+
+.header > *:nth-child(2) {
+    margin-left: auto;
 }
 
 button {
@@ -37,4 +46,10 @@ button {
 a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
