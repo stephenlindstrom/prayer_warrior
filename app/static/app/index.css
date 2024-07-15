@@ -1,9 +1,13 @@
-blockquote {
-    background-image: url(images/prayer-1.jpg);
+blockquote { 
     padding: 20px 50px;
-    margin: 10rem auto;
-    border: 2px solid black;
-    color: black;
-    width: 50vw;
-    font-size: 3rem;
+    margin: 6rem 2rem 0 0;
+    color: var(--secondary-color);
+    width: 36vw;
+    font-size: 2.75rem;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+body {
+    background-image: url(images/prayer-3.jpg);
+    background-size: cover;
 }

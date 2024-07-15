@@ -3,16 +3,21 @@
 {% load static %}
 {% block page-style%}<link href="{% static 'app/group-list.css' %}" rel=stylesheet>{% endblock %}
 {% block content %}
-    <h1>Prayer Groups</h1>
+<div class="page-container">
+    <div class="header">
+        <h1>Prayer Groups</h1>
+        <a href="{% url 'app:create-group' %}" class="add-button">Create group</a>
+    </div>
     {% if group_list %}
     {% for group in group_list %}    
-        <ul class="flex-container">
-            <a href="{% url 'app:group-detail' group.id %} ">
-                <li class="group"> {{ group.name }} </li>
-            </a>
-        </ul>
+    <ul class="flex-container">
+        <a href="{% url 'app:group-detail' group.id %} ">
+            <li class="group"> {{ group.name }} </li>
+        </a>
+    </ul>
     {% endfor %}
     {% else %}
         You do not belong to any groups
     {% endif %}
+</div>
 {% endblock %}

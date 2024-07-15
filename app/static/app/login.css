@@ -56,7 +56,7 @@ input {
 }
 
 button {
-    color: var(--secondary-color);
+    color: white;
     height: 2.5rem;
     border-radius: 5px;
     font-size: 1.15rem;
@@ -76,14 +76,14 @@ button {
     margin-top: 0.5rem;
 }
 
-.form-box > button {
-    margin-top: 1rem;
+a > button {
     background-color: var(--accent-color);
 }
 
 a {
     text-decoration: none;
-    color: var(--secondary-color);
+    color: white;
+    margin-top: 1rem;
 }
 
 hr {

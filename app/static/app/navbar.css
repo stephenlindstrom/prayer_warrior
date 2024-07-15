@@ -56,3 +56,8 @@ footer li {
     list-style-type: none;
     padding: 0 20px;
 }
+
+button {
+    cursor: pointer;
+    padding: 3px;
+}

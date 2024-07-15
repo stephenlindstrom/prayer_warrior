@@ -29,3 +29,18 @@ body {
     width: 100%;
     height: 2rem;
 }
+
+h1 {
+    font-size: 2rem;
+}
+
+.add-button {
+    background-color: rgb(238, 236, 236);
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    color: var(--text-color);
+    height: 2rem; 
+    font-size: 1rem;
+    border: 2px solid black;
+}

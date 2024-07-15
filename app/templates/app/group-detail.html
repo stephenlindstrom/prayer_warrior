@@ -8,8 +8,8 @@
         <div class="header">
             <h1>Group Prayer Requests</h1>
             <div class="buttons">
-                <button id="pr-btn"><a href="{% url 'app:prayer-request' %}">Add request</a></button>
-                <button id="am-btn"><a href="{% url 'app:add-member' group.id %}">Add member</a></button>
+                <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
+                <a href="{% url 'app:add-member' group.id %}" class="add-button">Add member</a>
             </div>
         </div>
         {% if prayer_list %}
