@@ -1,13 +1,19 @@
 {% extends "app/navbar.html" %}
-
+{% load static %}
+{% block page-style %} <link href="{% static 'app/create-group.css' %}" rel="stylesheet"> {% endblock %}
 {% block content %}
 
-<form action="{% url 'app:create-group' %}" method="post">
-{% csrf_token %}
-{{ form }}
-<input type="submit">
-</form>
-
+<div class="form-container">
+    <form action="{% url 'app:create-group' %}" method="post" class="add-group-form">
+    {% csrf_token %}
+        <h2 class="form-item">Create Group</h2>
+        <div class="input-box form-item">
+            <label for="group-name">Group name:</label>
+            <input type="text" name="name" id="group-name" required>    
+        </div>
+        <button type="Submit" class="form-item">Submit</button>
+    </form>
+</div>
 {% if messages %}
     {% for message in messages %}
         {{ message }}
