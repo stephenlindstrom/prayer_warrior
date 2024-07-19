@@ -9,9 +9,9 @@ from django.contrib.auth.models import User, Group
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.views import generic
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView
 
-from .forms import RegistrationForm, AddMemberForm, PrayerRequestForm
+from .forms import RegistrationForm, AddMemberForm, PrayerRequestForm, DeleteForm
 from .models import PrayerRequest, GroupPrayerManager
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
@@ -51,6 +51,18 @@ class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             for group in groups:
                 GroupPrayerManager.objects.create(prayer_request=self.object, group=group)
         return super().form_valid(form)
+
+class PrayerRequestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = PrayerRequest
+    login_url = reverse_lazy("login")
+    template_name = "app/delete-prayer-request.html"
+    success_url = reverse_lazy("app:personal-prayer")
+    form_class = DeleteForm
+
+    def test_func(self):
+        prayer_id = self.kwargs["pk"]
+        prayer_request = PrayerRequest.objects.get(id=prayer_id)
+        return prayer_request.user == self.request.user
 
 
 class RegistrationView(SuccessMessageMixin, CreateView):

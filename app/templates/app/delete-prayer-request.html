@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'app:delete-prayer-request' prayerrequest.id %}">
+{% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>

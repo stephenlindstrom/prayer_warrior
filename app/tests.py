@@ -235,6 +235,36 @@ class GroupDetailViewTests(TestCase):
         user.groups.add(group)
         response = self.client.get(reverse("app:group-detail", kwargs={"pk":1}))
         self.assertEqual(response.status_code, 200)
+
+
+class PrayerRequestDeleteViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        User.objects.create_user(username="testuser2", password="y0lo4321")
+        user = User.objects.get(username="testuser")
+        user2 = User.objects.get(username="testuser2")
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request")
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user2, content="prayer request 2")
+
+    def test_user_not_logged_in(self):
+        response = self.client.get(reverse("app:delete-prayer-request", kwargs={"pk":1}))
+        self.assertRedirects(response, "/login/?next=/app/delete-prayer-request/1/")
+
+    def test_unauthorized_user_get_request(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:delete-prayer-request", kwargs={"pk":2}))
+        self.assertEqual(response.status_code, 403)
+
+    def test_successful_get_request(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:delete-prayer-request", kwargs={"pk":1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "app/delete-prayer-request.html")
+
+    def test_successful_post_request(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.post(reverse("app:delete-prayer-request", kwargs={"pk":1}))
+        self.assertEqual(response.status_code, 200)
         
 
 
