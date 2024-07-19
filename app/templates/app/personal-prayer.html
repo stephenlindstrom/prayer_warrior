@@ -12,11 +12,17 @@
         </div>
     </div>
 {% if prayer_request_list %}
-    <ul class="flex-container">
+    <div class="flex-container">
     {% for prayer_request in prayer_request_list %}
-        <li class="prayer-request">{{ prayer_request.content }}</li>
+        <div class="prayer-request">
+            <div>{{ prayer_request.content }}</div>
+            <form method="post" action="{% url 'app:delete-prayer-request' prayer_request.id %}" class="delete-form">
+                {% csrf_token %}
+                <button type="submit" class="delete-button">X</button>
+            </form>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No items</p>
 {% endif %}
