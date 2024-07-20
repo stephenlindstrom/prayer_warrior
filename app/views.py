@@ -23,12 +23,19 @@ class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
     model = PrayerRequest
     login_url = reverse_lazy("login")
     template_name = "app/personal-prayer.html"
-    paginate_by = 5
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["prayer_request_list"] = self.model.objects.filter(user=self.request.user)
         return context
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        prayer_request_list = self.model.objects.filter(user=self.request.user)
+        if prayer_request_list:
+            queryset = prayer_request_list
+        return queryset
 
 
 class AddPrayerRequestView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
