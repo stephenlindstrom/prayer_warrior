@@ -1,15 +1,21 @@
 {% extends "app/navbar.html" %}
 {% load static %}
+
 {% block script %}
     <script src="{% static 'app/javascript.js' %}"></script>
 {% endblock %}
+
+{% block page-style %} <link href="{% static 'app/prayer-request.css' %}" rel="stylesheet"> {% endblock %}
+
 {% block content %}
-<style>#content{margin-top:7rem;}</style>
-<form action="{% url 'app:prayer-request' %}" method="post" id="prayer-request">
-{% csrf_token %}
-{{ form }}
-<button type="submit" id="btn" onclick="disableButton()">Submit</button>
-</form>
+<div class="form-container">
+    <form action="{% url 'app:prayer-request' %}" method="post" id="prayer-request" class="prayer-request-form">
+    {% csrf_token %}
+        <h2>Add Prayer Request</h2>
+        <div class="form-input">{{ form }}</div>
+        <button type="submit" id="btn" onclick="disableButton()">Submit</button>
+    </form>
+</div>
 
 {% if messages %}
     {% for message in messages %}

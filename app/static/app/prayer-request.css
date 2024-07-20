@@ -1,0 +1,18 @@
+#content {
+    margin-top: 7rem;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.prayer-request-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+    height: 400px;
+    width: 600px;
+}

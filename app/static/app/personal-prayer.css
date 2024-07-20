@@ -68,5 +68,24 @@ a {
 }
 
 .pagination {
+    display: flex;
     color: white;
+    width: 400px;
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    margin-top: 1rem;
+    justify-content: space-around;
+
+}
+
+.pagination a {
+    color: white;
+}
+
+.pagination a:hover {
+    color: #b2bfdb;
+}
+
+.hidden {
+    visibility: hidden;
 }

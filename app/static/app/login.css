@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--background-color);
+    background-image: none;
+}
+
 .page-container {
     display: flex;
     align-items: center;
