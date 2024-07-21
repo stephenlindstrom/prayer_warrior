@@ -25,5 +25,6 @@ class AddMemberForm(forms.Form):
     username = forms.CharField()
 
 
-class DeleteForm(forms.Form):
-    confirmation = forms.BooleanField()
+class DeleteForm(forms.Form): 
+    pass
+#     confirmation = forms.BooleanField()
