@@ -39,10 +39,6 @@ header a:hover {
     color: #b2bfdb;
 }
 
-header a:visited {
-    color: var(--secondary-color);
-}
-
 footer ul {
     display: flex;
     align-items: center;
