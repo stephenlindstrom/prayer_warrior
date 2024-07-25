@@ -7,6 +7,7 @@ urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path("personal-prayer/", views.PersonalPrayerView.as_view(), name="personal-prayer"),
     path("delete-prayer-request/<pk>/", views.PrayerRequestDeleteView.as_view(), name="delete-prayer-request"),
+    path("add-answered-prayer/<int:prayer_request_id>/", views.AddAnsweredPrayerView.as_view(), name="add-answered-prayer"),
     path("register/", views.RegistrationView.as_view(), name="register"),
     path("prayer-request/", views.AddPrayerRequestView.as_view(), name="prayer-request"),
     path("create-group/", views.CreateGroupView.as_view(), name="create-group"),

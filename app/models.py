@@ -14,3 +14,9 @@ class PrayerRequest(models.Model):
 class GroupPrayerManager(models.Model):
     prayer_request = models.ForeignKey(PrayerRequest, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+
+class AnsweredPrayer(models.Model):
+    datetime = models.DateTimeField(auto_now_add=True)
+    prayer_request = models.ForeignKey(PrayerRequest, on_delete=models.CASCADE)
+    content = models.TextField()

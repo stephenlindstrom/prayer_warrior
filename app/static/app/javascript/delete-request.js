@@ -1,13 +1,37 @@
 const deleteButtons = document.querySelectorAll(".delete-button");
-const modal = document.querySelector("#deleteModal");
-const noButton = document.querySelector("#no-button");
+const noButtons = document.querySelectorAll(".no-button");
+const addAnsweredPrayerButtons = document.querySelectorAll(".answered-prayer-button");
+const cancelButtons = document.querySelectorAll(".cancel-button");
 
 deleteButtons.forEach((deleteButton) => {
+    const val = deleteButton.value;
+    const deleteModal= document.querySelector("#delete-" + val);
     deleteButton.addEventListener("click", () => {
-        modal.style.display = "block";
+        deleteModal.style.display = "block";
     })
 })
 
-noButton.addEventListener("click", () => {
-    modal.style.display = "none";
+
+addAnsweredPrayerButtons.forEach((addAnsweredPrayerButton) => {
+    const val = addAnsweredPrayerButton.value;
+    const addAnsweredPrayerModal = document.querySelector("#add-answer-" + val);
+    addAnsweredPrayerButton.addEventListener("click", () => {
+        addAnsweredPrayerModal.style.display = "block";
+    })
+})
+
+noButtons.forEach((noButton) => {
+    const val = noButton.value;
+    const deleteModal = document.querySelector("#delete-" + val);
+    noButton.addEventListener("click", () => {
+        deleteModal.style.display = "none";
+    })
+})
+
+cancelButtons.forEach((cancelButton) => {
+    const val = cancelButton.value;
+    const addAnsweredPrayerModal = document.querySelector("#add-answer-" + val);
+    cancelButton.addEventListener("click", () => {
+        addAnsweredPrayerModal.style.display = "none";
+    })
 })

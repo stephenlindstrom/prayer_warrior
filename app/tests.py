@@ -3,7 +3,7 @@ from django.contrib.auth.models import User, Group
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import PrayerRequest
+from .models import AnsweredPrayer, PrayerRequest
 
 class PrayerRequestModelTests(TestCase):
     def setUp(self):
@@ -73,6 +73,14 @@ class PersonalPrayerViewTests(TestCase):
         prayer_request3 = PrayerRequest.objects.create(datetime=datetime.now(), user=current_user, content="prayer request3")
         response = self.client.get(reverse("app:personal-prayer"))
         self.assertQuerySetEqual(list(response.context["prayer_request_list"]), [prayer_request1, prayer_request3])
+
+    def test_answered_prayer(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        prayer_request1 = PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request1", answered=True)
+        prayer_request2 = PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request2")
+        response = self.client.get(reverse("app:personal-prayer"))
+        self.assertQuerySetEqual(list(response.context["prayer_request_list"]), [prayer_request2])
 
 class IndexViewTests(TestCase):
     def setUp(self):
@@ -264,9 +272,18 @@ class PrayerRequestDeleteViewTests(TestCase):
     def test_successful_post_request(self):
         self.client.login(username="testuser", password="y0lo5432")
         response = self.client.post(reverse("app:delete-prayer-request", kwargs={"pk":1}))
-        self.assertEqual(response.status_code, 200)
-        
+        self.assertRedirects(response, reverse("app:personal-prayer"))
 
 
-        
-
+class AddAnsweredPrayerViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request", answered=False)
+    
+    def test_successful_post_add_answered_prayer(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.post(reverse("app:add-answered-prayer", kwargs={"prayer_request_id": 1}), {"content": "answered"})
+        self.assertRedirects(response, reverse("app:personal-prayer"))
+        self.assertTrue(AnsweredPrayer.objects.filter(content="answered").exists())
+        self.assertTrue(PrayerRequest.objects.filter(answered=True).exists())

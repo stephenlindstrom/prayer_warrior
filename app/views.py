@@ -11,8 +11,8 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
 
-from .forms import RegistrationForm, AddMemberForm, PrayerRequestForm, DeleteForm
-from .models import PrayerRequest, GroupPrayerManager
+from .forms import AnsweredPrayerForm, RegistrationForm, AddMemberForm, PrayerRequestForm, DeleteForm
+from .models import AnsweredPrayer, PrayerRequest, GroupPrayerManager
 
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name="app/index.html"
@@ -27,12 +27,12 @@ class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["prayer_request_list"] = self.model.objects.filter(user=self.request.user)
+        context["prayer_request_list"] = self.model.objects.filter(user=self.request.user).filter(answered=False)
         return context
     
     def get_queryset(self):
         queryset = super().get_queryset()
-        prayer_request_list = self.model.objects.filter(user=self.request.user)
+        prayer_request_list = self.model.objects.filter(user=self.request.user).filter(answered=False).order_by("id")
         if prayer_request_list:
             queryset = prayer_request_list
         return queryset
@@ -71,6 +71,22 @@ class PrayerRequestDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteVie
         prayer_id = self.kwargs["pk"]
         prayer_request = PrayerRequest.objects.get(id=prayer_id)
         return prayer_request.user == self.request.user
+
+
+class AddAnsweredPrayerView(LoginRequiredMixin, CreateView):
+    model = AnsweredPrayer
+    login_url = reverse_lazy("login")
+    form_class = AnsweredPrayerForm
+    success_url = reverse_lazy("app:personal-prayer")
+    template_name ="app/add-answered-prayer.html"
+
+    def form_valid(self, form):
+        prayer_request_id = self.kwargs["prayer_request_id"]
+        prayer_request = PrayerRequest.objects.get(id=prayer_request_id)
+        prayer_request.answered = True
+        prayer_request.save()
+        form.instance.prayer_request = prayer_request
+        return super().form_valid(form)
 
 
 class RegistrationView(SuccessMessageMixin, CreateView):

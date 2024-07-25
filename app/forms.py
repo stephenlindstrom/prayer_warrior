@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User, Group
-from .models import PrayerRequest
+from .models import AnsweredPrayer, PrayerRequest
 
 class PrayerRequestForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -28,3 +28,8 @@ class AddMemberForm(forms.Form):
 class DeleteForm(forms.Form): 
     pass
 #     confirmation = forms.BooleanField()
+
+class AnsweredPrayerForm(forms.ModelForm):
+    class Meta:
+        model = AnsweredPrayer
+        fields = ["content"]
