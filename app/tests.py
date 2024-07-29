@@ -287,3 +287,40 @@ class AddAnsweredPrayerViewTests(TestCase):
         self.assertRedirects(response, reverse("app:personal-prayer"))
         self.assertTrue(AnsweredPrayer.objects.filter(content="answered").exists())
         self.assertTrue(PrayerRequest.objects.filter(answered=True).exists())
+
+
+class AnsweredPrayerListViewTests(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="testuser", password="y0lo5432")
+        user = User.objects.get(username="testuser")
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user, content="prayer request", answered=True)
+        
+    def test_user_not_logged_in(self):
+        response = self.client.get(reverse("app:answered-prayer-list"))
+        self.assertRedirects(response, "/login/?next=/app/answered-prayer-list/")
+
+    def test_no_answered_prayers(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:answered-prayer-list"))
+        self.assertContains(response, "No answered prayers")
+
+    def test_single_user_answered_prayers(self):
+        self.client.login(username="testuser", password="y0lo5432")
+        prayer_request = PrayerRequest.objects.get(content="prayer request")
+        AnsweredPrayer.objects.create(datetime=datetime.now(), prayer_request=prayer_request, content="Answered prayer")
+        answered_prayer = AnsweredPrayer.objects.get(content="Answered prayer")
+        response = self.client.get(reverse("app:answered-prayer-list"))
+        self.assertQuerySetEqual(list(response.context["answered_prayer_list"]), [answered_prayer]) 
+
+    def test_multiple_users_answered_prayers(self):
+        User.objects.create_user(username="testuser2", password="y0lo5432")
+        user2 = User.objects.get(username="testuser2")
+        PrayerRequest.objects.create(datetime=datetime.now(), user=user2, content="prayer request 2", answered=True)
+        prayer_request = PrayerRequest.objects.get(content="prayer request")
+        prayer_request2 =PrayerRequest.objects.get(content="prayer request 2")
+        AnsweredPrayer.objects.create(datetime=datetime.now(), prayer_request=prayer_request, content="Answered prayer")
+        AnsweredPrayer.objects.create(datetime=datetime.now(), prayer_request=prayer_request2, content="Answered prayer 2")
+        answered_prayer = AnsweredPrayer.objects.get(content="Answered prayer")
+        self.client.login(username="testuser", password="y0lo5432")
+        response = self.client.get(reverse("app:answered-prayer-list"))
+        self.assertQuerySetEqual(list(response.context["answered_prayer_list"]), [answered_prayer])

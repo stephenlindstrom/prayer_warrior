@@ -1,0 +1,12 @@
+{% extends "app/navbar.html" %}
+
+{% block content %}
+    {% if answered_prayer_list %}
+    {% for answered_prayer in answered_prayer_list %}
+        <p>{{ answered_prayer.content }}</p>
+    {% endfor %}
+    {% else %}
+    No answered prayers
+
+    {% endif %}
+{% endblock %}
