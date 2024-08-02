@@ -1,4 +1,4 @@
-{% extends "app/navbar.html" %}
+{% extends "app/base-list.html" %}
 
 {% load static %}
 {% block page-style %} <link rel="stylesheet" href="{% static 'app/personal-prayer.css' %}"> {% endblock %}
@@ -6,7 +6,7 @@
     <script src="{% static 'app/javascript/delete-request.js' %}" defer></script>
 {% endblock %}
 
-{% block content %}
+{% block list-content %}
 <div class="page-container">
     <div class="header">
         <h1>Personal Prayer Requests</h1>
@@ -50,7 +50,7 @@
 {% else %}
     <p>No items</p>
 {% endif %}
-    <div class="pagination">
+    <!-- <div class="pagination">
         <div class="previous">
             {% if page_obj.has_previous %}
                 <a href="?page={{page_obj.previous_page_number }}"><<</a>
@@ -71,6 +71,6 @@
                 <p class="hidden">>></p>
             {% endif %}
         </div>
-    </div>
+    </div> -->
 </div>
 {% endblock %}

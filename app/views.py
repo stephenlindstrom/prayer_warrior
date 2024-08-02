@@ -93,15 +93,15 @@ class AnsweredPrayerListView(LoginRequiredMixin, generic.ListView):
     model = AnsweredPrayer
     template_name = "app/answered-prayer-list.html"
     login_url = reverse_lazy("login")
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    paginate_by = 6
+    
+    def get_queryset(self):
         prayer_requests = PrayerRequest.objects.filter(user=self.request.user)
-        context["answered_prayer_list"] = []
+        queryset = []
         for prayer_request in prayer_requests:
             if AnsweredPrayer.objects.filter(prayer_request=prayer_request).exists():
-                context["answered_prayer_list"].append(AnsweredPrayer.objects.get(prayer_request=prayer_request))
-        return context
+                queryset.append(AnsweredPrayer.objects.get(prayer_request=prayer_request))
+        return queryset
 
 class RegistrationView(SuccessMessageMixin, CreateView):
     template_name= "app/register.html"
