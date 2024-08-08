@@ -127,6 +127,10 @@ class GroupListView(LoginRequiredMixin, generic.ListView):
     model = Group
     template_name = "app/group-list.html"
     login_url = reverse_lazy("login")
+    paginate_by = 6
+
+    def get_queryset(self):
+        return self.request.user.groups.all()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

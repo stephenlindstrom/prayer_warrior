@@ -66,6 +66,7 @@ button {
     border-radius: 5px;
     font-size: 1.15rem;
     cursor: pointer;
+    width: 300px;
 }
 .login-info > button {
     background-color: var(--primary-color);
@@ -83,6 +84,7 @@ button {
 
 a > button {
     background-color: var(--accent-color);
+    width: 200px;
 }
 
 a {

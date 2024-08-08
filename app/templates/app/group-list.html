@@ -1,8 +1,8 @@
-{% extends "app/navbar.html" %}
+{% extends "app/base-list.html" %}
 
 {% load static %}
 {% block page-style %}<link href="{% static 'app/group-list.css' %}" rel=stylesheet>{% endblock %}
-{% block content %}
+{% block list-content %}
 <div class="page-container">
     <div class="header">
         <h1>Prayer Groups</h1>
@@ -10,8 +10,8 @@
             <a href="{% url 'app:create-group' %}" class="add-button">Create group</a>
         </div>
     </div>
-    {% if group_list %}
-    {% for group in group_list %}    
+    {% if page_obj %}
+    {% for group in page_obj %}    
     <ul class="flex-container">
         <a href="{% url 'app:group-detail' group.id %} ">
             <li class="group"> {{ group.name }} </li>

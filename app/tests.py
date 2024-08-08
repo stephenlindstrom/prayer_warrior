@@ -310,7 +310,7 @@ class AnsweredPrayerListViewTests(TestCase):
         AnsweredPrayer.objects.create(datetime=datetime.now(), prayer_request=prayer_request, content="Answered prayer")
         answered_prayer = AnsweredPrayer.objects.get(content="Answered prayer")
         response = self.client.get(reverse("app:answered-prayer-list"))
-        self.assertQuerySetEqual(list(response.context["answered_prayer_list"]), [answered_prayer]) 
+        self.assertQuerySetEqual(list(response.context["object_list"]), [answered_prayer]) 
 
     def test_multiple_users_answered_prayers(self):
         User.objects.create_user(username="testuser2", password="y0lo5432")
@@ -323,4 +323,4 @@ class AnsweredPrayerListViewTests(TestCase):
         answered_prayer = AnsweredPrayer.objects.get(content="Answered prayer")
         self.client.login(username="testuser", password="y0lo5432")
         response = self.client.get(reverse("app:answered-prayer-list"))
-        self.assertQuerySetEqual(list(response.context["answered_prayer_list"]), [answered_prayer])
+        self.assertQuerySetEqual(list(response.context["object_list"]), [answered_prayer])
