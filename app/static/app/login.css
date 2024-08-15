@@ -103,6 +103,10 @@ hr {
     text-align: center;
 }
 
+.messages > p {
+    font-weight: 500;
+}
+
 @media (max-width: 1300px) {
     .flex-container {
         flex-direction: column;

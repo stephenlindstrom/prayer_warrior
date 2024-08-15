@@ -9,9 +9,21 @@
     </div>
     {% if page_obj %}
     {% for answered_prayer in page_obj %}
-        <ul class="flex-container">
-            <li class="answered-prayer"> {{answered_prayer.content}} </li>
-        </ul>
+        <div class="answered-prayer">
+            <div class="title-and-date">
+                <p class="bold">Request</p>
+                <p class="bold">{{answered_prayer.prayer_request.datetime.date}}</p>
+            </div>
+            <br>
+            <p>{{answered_prayer.prayer_request.content}} </p>
+            <br>
+            <div class="title-and-date">
+                <p class="bold">Answer</p>
+                <p class="bold">{{answered_prayer.datetime.date}}</p>
+            </div>
+            <br>
+            <p>{{answered_prayer.content}}</p>
+        </div>
         
     {% endfor %}
     {% else %}

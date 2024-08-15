@@ -1,27 +1,12 @@
 #content {
-    text-align: center;
     margin-top: 7rem;
 }
 
-#content ul a {
-    text-decoration: none;
-    color: var(--text-color);
-    margin-top: 1rem;
-}
-
-#content .flex-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
 #content .answered-prayer {
-    list-style-type: none;
     border: 3px solid var(--primary-color);
     border-radius: 10px;
     padding: 2rem;
-    width: 25vw;
+    width: 80vw;
     margin-top: 1rem;
     background-color: var(--secondary-color);
 }
@@ -30,4 +15,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.title-and-date {
+    display: flex;
+    justify-content: space-between;
 }

@@ -14,6 +14,10 @@ from django.views.generic.edit import CreateView, DeleteView
 from .forms import AnsweredPrayerForm, RegistrationForm, AddMemberForm, PrayerRequestForm, DeleteForm
 from .models import AnsweredPrayer, PrayerRequest, GroupPrayerManager
 
+class NewLoginView(LoginView):
+    template_name = "app/login.html"
+    next_page = "app:index"
+
 class IndexView(LoginRequiredMixin, generic.TemplateView):
     template_name="app/index.html"
     login_url = reverse_lazy("login")
