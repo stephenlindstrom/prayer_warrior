@@ -38,8 +38,8 @@
             <div class="modal-content">
                 <form method="post" action="{% url 'app:add-answered-prayer' prayer_request.id %}" class="confirmation-form">
                     {% csrf_token %}
-                    <label for="answered-prayer-content">Content</label>
-                    <textarea name="content" id="answered-prayer-content"></textarea>
+                    <label for="answered-prayer-content" class="bold">Answer</label>
+                    <textarea name="content" id="answered-prayer-content" rows="15" cols="75" autofocus></textarea>
                     <button type="submit">Submit</button>
                     <button type="button" class="cancel-button" value="{{ prayer_request.id }}">Cancel</button>
                 </form>

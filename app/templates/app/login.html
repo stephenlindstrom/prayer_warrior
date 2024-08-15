@@ -17,7 +17,7 @@
         <div class="form-box">
             <form method="post" action="{% url 'login' %}" class="login-info">
             {% csrf_token %}
-                <input type="text" name="username" id="username" placeholder="Username" class="flex-item">
+                <input type="text" name="username" id="username" placeholder="Username" class="flex-item" autofocus>
                 <input type="password" name="password" id="password" placeholder="Password" class="flex-item">
                 <button type="submit" class="flex-item">Log In</button>
                 <input type="hidden" name="next" value="{{ next }}">

@@ -75,7 +75,7 @@ a {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 500px;
+    width: 700px;
     text-align: center;
 }
 
@@ -85,4 +85,16 @@ a {
 
 #no-button {
     margin-left: 2rem;
+}
+
+.modal-content textarea {
+    resize: none;
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.bold {
+    font-weight: bold;
 }
