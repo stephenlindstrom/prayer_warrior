@@ -1,20 +1,40 @@
-<form method="post">
-{% csrf_token %}
-    <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
+{% extends "app/base.html" %}
+{% load static %}
 
-        <tr>
-            <td>{{ form.password1.label_tag }}</td>
-            <td>{{ form.password1 }}</td>
-        </tr>
-        
-        <tr>
-            <td>{{ form.password2.label_tag }}</td>
-            <td>{{ form.password2 }}</td>
-        </tr>
-    </table>
-    <input type="submit" value="Submit">
-</form>
+{% block page-style %} <link href="{% static 'app/register.css' %}" rel="stylesheet"> {% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="flex-container">
+        <div class="logo">
+            <h1>Prayer Warrior</h1>
+            <div class="images">
+                <img src="{% static 'app/images/cross.svg' %}" alt="cross" width="100px">
+                <img src="{% static 'app/images/sword.svg' %}" alt="sword" width="100px">
+            </div>
+        </div>
+
+        <div class="form-box">
+            <form method="post" action="{% url 'app:register' %}" class="registration-info">
+            {% csrf_token %}
+                <input type="text" name="username" id="usernam" placeholder="Username" class="flex-item" autofocus>
+                <input type="password" name="password1" id="password1" placeholder="Password" class="flex-item">
+                <input type="password" name="password2" id="password2" placeholder="Confirm Password" class="flex-item">
+                <button type="submit" class="flex-item">Register</button>
+            </form>
+
+            <div class="messages">
+                {% if form.errors %}
+                <p>Invalid username and password combination</p>
+                {% endif %}
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
