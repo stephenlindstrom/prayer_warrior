@@ -11,7 +11,10 @@
     <div class="header">
         <h1>Personal Prayers</h1>
         <div class="buttons">
-            <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
+            <a href="{% url 'app:prayer-request' %}" class="add-button">
+              <i class="fa-solid fa-hands-praying"></i>
+              <div>Add prayer</div>
+            </a>
         </div>
     </div>
     <blockquote>"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."</blockquote>
@@ -20,8 +23,14 @@
     {% for prayer_request in page_obj %}
         <div class="prayer-request" id="pr-{{ prayer_request.id }}">
             <div>{{ prayer_request.content }}</div>
-            <button type="button" class="delete-button" value="{{ prayer_request.id }}">X</button>
-            <button type="button" class="answered-prayer-button" value="{{ prayer_request.id }}">Answered Prayer</button>
+            <button type="button" class="request-buttons delete-button" value="{{ prayer_request.id }}">
+              <i class="fa-solid fa-trash"></i>
+              <div>Delete</div>
+            </button>
+            <button type="button" class="request-buttons answered-prayer-button" value="{{ prayer_request.id }}">
+              <i class="fa-solid fa-reply"></i>
+              <div>Answer</div>
+            </button>
         </div>
 
         <div id="delete-{{ prayer_request.id }}" class="modal">

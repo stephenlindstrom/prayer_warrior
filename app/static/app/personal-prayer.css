@@ -48,7 +48,12 @@ button {
 
 a {
     text-decoration: none;
-    color: var(--text-color);
+    text-align: center;
+}
+
+.add-button > div {
+  color: var(--secondary-color);
+  margin-top: 5px;
 }
 
 .buttons {
@@ -56,10 +61,26 @@ a {
     align-items: center;
 }
 
-.delete-button {
-    color: red;
-    font-weight: bold;
-    float: right
+.fa-hands-praying {
+  color: var(--secondary-color);
+  font-size: 30px;
+}
+
+.request-buttons {
+  color: var(--text-color);
+  border: none;
+  background: none;
+  cursor: pointer;
+  float: right;
+  margin: 10px 0 0 10px;
+}
+
+.request-buttons > div {
+  margin-top: 5px;
+}
+
+button > i {
+  font-size: 20px;
 }
 
 .modal {
@@ -143,5 +164,9 @@ blockquote {
     display: flex;
     justify-content: center;
     width: 100%;
+
+  .add-button {
+      margin-top: 1rem;
+    }
   }
 }
