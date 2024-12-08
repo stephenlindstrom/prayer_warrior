@@ -69,7 +69,7 @@ footer li {
   color: var(--secondary-color);
 }
 
-@media (max-width: 870px) {
+@media (max-width: 875px) {
   #navbar-menu {
     display: none;
     flex-direction: column;

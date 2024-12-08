@@ -9,11 +9,12 @@
 {% block list-content %}
 <div class="page-container">
     <div class="header">
-        <h1>Personal Prayer Requests</h1>
+        <h1>Personal Prayers</h1>
         <div class="buttons">
             <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
         </div>
     </div>
+    <blockquote>"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."</blockquote>
 {% if prayer_request_list %}
     <div class="flex-container">
     {% for prayer_request in page_obj %}
@@ -47,8 +48,6 @@
         </div>
     {% endfor %}
     </div>
-{% else %}
-    <p>No items</p>
 {% endif %}
 </div>
 {% endblock %}

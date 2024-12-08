@@ -9,7 +9,7 @@ blockquote {
     border-radius: 8px;
 }
 
-@media (min-width: 870px) {
+@media (min-width: 876px) {
   blockquote {
     font-size: 2rem;
     max-width: 700px;
