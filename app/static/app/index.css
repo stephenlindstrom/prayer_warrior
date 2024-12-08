@@ -1,8 +1,25 @@
 blockquote { 
-    padding: 20px 50px;
-    margin: 6rem 2rem 0 0;
+    padding: 20px;
+    margin: 12rem auto;
     color: var(--secondary-color);
-    width: 700px;
-    font-size: 2.7rem;
-    font-family: Georgia, 'Times New Roman', Times, serif
+    max-width: min(500px, 100%);
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+}
+
+@media (min-width: 870px) {
+  blockquote {
+    font-size: 2rem;
+    max-width: 700px;
+    padding: 20px 50px;
+  }
+}
+
+@media (min-width: 1200px) {
+  blockquote {
+    font-size: 2.5rem;
+    max-width: 800px;
+  }
 }

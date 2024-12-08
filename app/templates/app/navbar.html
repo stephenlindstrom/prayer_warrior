@@ -9,8 +9,9 @@
 {% block navbar %}
 <header>
     <h1 id="nav-title"><a href="{% url 'app:index' %}">Prayer Warrior</a></h1>
+    <button class="navbar-toggle" onclick="toggleMenu()">Menu</button>
     <nav>
-        <ul>
+        <ul id="navbar-menu">
             <li><a href="{% url 'app:personal-prayer' %}">Personal Prayers</a></li>
             <li><a href="{% url 'app:group-prayers' %}">Group Prayers</a></li>
             <li><a href="{% url 'app:answered-prayer-list' %}">Answered Prayers</a></li>
@@ -23,6 +24,12 @@
         </ul>
     </nav>
 </header>
+
+<script>
+  function toggleMenu () {
+    document.querySelector("#navbar-menu").classList.toggle('show');
+  }
+</script>
 {% endblock %}
 
 {% block footer %}

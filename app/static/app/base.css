@@ -12,8 +12,8 @@ body {
     background-repeat: no-repeat;
     background-color: black;
     background-image: url(images/prayer-3.jpg);
-    background-size: cover;
-    background-position: 0 5rem;
+    background-size: contain;
+    background-position: bottom;
 }
 
 #content {
@@ -47,4 +47,10 @@ h1 {
     height: 2rem; 
     font-size: 1rem;
     border: 2px solid black;
+}
+
+@media (max-width: 870px) {
+  body {
+    background-position: bottom 20% center;
+  }
 }
