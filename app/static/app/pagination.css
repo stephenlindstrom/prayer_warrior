@@ -6,6 +6,8 @@
     padding: 0.5rem;
     margin-top: 1rem;
     justify-content: space-around;
+    position: absolute;
+    bottom: 50px;
 }
 
 .pagination a {

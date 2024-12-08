@@ -1,9 +1,13 @@
 #content {
-    margin-top: 7rem;
+    margin-top: 12rem;
 }
 
 h1 {
     text-align: center;
+}
+
+.page-container {
+  margin-bottom: 50px;
 }
 
 .flex-container {
@@ -22,6 +26,7 @@ h1 {
 }
 
 .header {
+    margin-top: -5rem;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     justify-items: center;

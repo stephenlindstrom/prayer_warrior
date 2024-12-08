@@ -34,7 +34,7 @@ header a {
     transition: all 0.3s ease 0s;
 }
 
-header a:hover, button:hover {
+header a:hover, #logout-button:hover {
     color: #b2bfdb;
 }
 
@@ -52,7 +52,7 @@ footer li {
     padding: 0 20px;
 }
 
-button {
+#logout-button {
     cursor: pointer;
     color: var(--secondary-color);
     transition: all 0.3s ease 0s;
@@ -76,7 +76,7 @@ button {
     background-color: var(--primary-color);
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 10px;
     width: 200px;
     border: 1px solid var(--secondary-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

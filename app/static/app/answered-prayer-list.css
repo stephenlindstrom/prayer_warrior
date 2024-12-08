@@ -1,5 +1,13 @@
 #content {
-    margin-top: 7rem;
+    margin-top: 12rem;
+}
+
+.page-container {
+  margin-bottom: 50px;
+}
+
+.header {
+  margin-top: -5rem;
 }
 
 #content .answered-prayer {

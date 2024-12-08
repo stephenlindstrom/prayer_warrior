@@ -9,7 +9,7 @@
 {% block navbar %}
 <header>
     <h1 id="nav-title"><a href="{% url 'app:index' %}">Prayer Warrior</a></h1>
-    <button class="navbar-toggle" onclick="toggleMenu()">Menu</button>
+    <button class="navbar-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
     <nav>
         <ul id="navbar-menu">
             <li><a href="{% url 'app:personal-prayer' %}">Personal Prayers</a></li>
@@ -18,7 +18,7 @@
             <li>
                 <form action="{% url 'logout' %}" method="post">
                 {% csrf_token %}
-                    <button type="submit">Logout</button>
+                    <button type="submit" id="logout-button">Logout</button>
                 </form>
             </li>
         </ul>

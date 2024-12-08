@@ -50,27 +50,5 @@
 {% else %}
     <p>No items</p>
 {% endif %}
-    <!-- <div class="pagination">
-        <div class="previous">
-            {% if page_obj.has_previous %}
-                <a href="?page={{page_obj.previous_page_number }}"><<</a>
-            {% else %}
-                <p class="hidden"><<</p>
-            {% endif %}
-
-        </div>
-
-        <div class="current-page">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-        </div>
-
-        <div class="next">
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">>></a>
-            {% else %}
-                <p class="hidden">>></p>
-            {% endif %}
-        </div>
-    </div> -->
 </div>
 {% endblock %}
