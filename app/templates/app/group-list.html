@@ -8,11 +8,12 @@
         <h1>Prayer Groups</h1>
         <div class="buttons">
             <a href="{% url 'app:create-group' %}" class="add-button">
-              <i class="fa-solid fa-user-group"></i>
+              <i class="fa-solid fa-users"></i>
               <div>Add group</div>
             </a>
         </div>
     </div>
+    <blockquote class="bible-verse">"For where two or three gather in my name, there am I with them."</blockquote>
     {% if page_obj %}
     {% for group in page_obj %}    
     <ul class="flex-container">

@@ -8,10 +8,17 @@
         <div class="header">
             <h1>Group Prayer Requests</h1>
             <div class="buttons">
-                <a href="{% url 'app:prayer-request' %}" class="add-button">Add request</a>
-                <a href="{% url 'app:add-member' group.id %}" class="add-button">Add member</a>
+                <a href="{% url 'app:prayer-request' %}" class="add-button">
+                  <i class="fa-solid fa-hands-praying"></i>
+                  <div>Add prayer</div>
+                </a>
+                <a href="{% url 'app:add-member' group.id %}" class="add-button">
+                  <i class="fa-solid fa-person"></i>
+                  <div>Add member</div>
+                </a>
             </div>
         </div>
+        <blockquote class="bible-verse">"Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective."</blockquote>
         {% if prayer_list %}
         <ul class="flex-container">
         {% for prayer in prayer_list %}
