@@ -7,7 +7,10 @@
     <div class="header">
         <h1>Prayer Groups</h1>
         <div class="buttons">
-            <a href="{% url 'app:create-group' %}" class="add-button">Create group</a>
+            <a href="{% url 'app:create-group' %}" class="add-button">
+              <i class="fa-solid fa-user-group"></i>
+              <div>Add group</div>
+            </a>
         </div>
     </div>
     {% if page_obj %}

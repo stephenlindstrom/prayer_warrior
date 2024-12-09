@@ -66,11 +66,6 @@
     align-items: center;
 }
 
-.add-button {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-}
-
 @media (max-width: 1400px) {
   .header {
     display: flex;

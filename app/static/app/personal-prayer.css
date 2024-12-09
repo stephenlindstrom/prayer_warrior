@@ -51,19 +51,9 @@ a {
     text-align: center;
 }
 
-.add-button > div {
-  color: var(--secondary-color);
-  margin-top: 5px;
-}
-
 .buttons {
     display: flex;
     align-items: center;
-}
-
-.fa-hands-praying {
-  color: var(--secondary-color);
-  font-size: 30px;
 }
 
 .request-buttons {
@@ -164,9 +154,5 @@ blockquote {
     display: flex;
     justify-content: center;
     width: 100%;
-
-  .add-button {
-      margin-top: 1rem;
-    }
   }
 }
