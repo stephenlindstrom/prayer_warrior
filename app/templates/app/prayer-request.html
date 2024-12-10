@@ -12,15 +12,23 @@
     <form action="{% url 'app:prayer-request' %}" method="post" id="prayer-request" class="prayer-request-form">
     {% csrf_token %}
         <h2>Add Prayer Request</h2>
-        <div class="form-input">{{ form }}</div>
-        <button type="submit" id="btn" onclick="disableButton()">Submit</button>
+        <!-- <div class="form-input">{{ form }}</div> -->
+         {% for field in form %}
+          <label class="label-class">{{ field.label }}</label>
+          {{ field }}
+          {% for error in field.errors %}
+            {{ error }}
+          {% endfor %}
+        {% endfor %}
+        <button type="submit" id="btn" onclick="disableButton()">Add prayer</button>
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
     </form>
 </div>
 
-{% if messages %}
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
-{% endif %}
+
 
 {% endblock %}

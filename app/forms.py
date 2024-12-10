@@ -8,7 +8,8 @@ class PrayerRequestForm(forms.ModelForm):
         user = kwargs.pop("user")
         forms.ModelForm.__init__(self, *args, **kwargs)
         self.fields['groups'].queryset = Group.objects.filter(user=user)
-
+        self.fields['groups'].widget.attrs.update({'class': 'group-selection'})
+        self.fields['content'].widget.attrs.update({'class': 'prayer-content'})
 
     groups = forms.ModelMultipleChoiceField(queryset=Group.objects.none(), label="Groups", required=False)
     class Meta:
