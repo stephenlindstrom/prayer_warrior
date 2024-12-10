@@ -53,6 +53,12 @@ h1 {
 button {
     border-radius: 5px;
     padding: 5px;
+    cursor: pointer;
+}
+
+form button {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 a {
@@ -69,7 +75,6 @@ a {
   color: var(--text-color);
   border: none;
   background: none;
-  cursor: pointer;
   float: right;
   margin: 10px 0 0 10px;
 }
@@ -96,7 +101,7 @@ button > i {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--secondary-color);
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -118,6 +123,7 @@ button > i {
     margin: 20px auto;
     padding: 10px;
     font-size: 1rem;
+    background-color: white;
 }
 
 .bold {
