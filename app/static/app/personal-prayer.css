@@ -25,6 +25,15 @@ h1 {
     background-color: var(--secondary-color);
 }
 
+.content-and-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .header {
     margin-top: -5rem;
     display: grid;

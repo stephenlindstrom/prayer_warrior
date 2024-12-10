@@ -22,7 +22,12 @@
     <div class="flex-container">
     {% for prayer_request in page_obj %}
         <div class="prayer-request" id="pr-{{ prayer_request.id }}">
-            <div>{{ prayer_request.content }}</div>
+            <div class="content-and-date">
+              <p class="bold">Request</p>
+              <p class="date bold">{{ prayer_request.datetime.date }}</p>
+            </div>
+            <br>
+            <p>{{ prayer_request.content }}</p>
             <button type="button" class="request-buttons delete-button" value="{{ prayer_request.id }}">
               <i class="fa-solid fa-trash"></i>
               <div>Delete</div>

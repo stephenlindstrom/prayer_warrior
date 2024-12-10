@@ -30,7 +30,7 @@ class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return PrayerRequest.objects.filter(user=self.request.user, answered=False).order_by("id")
+        return PrayerRequest.objects.filter(user=self.request.user, answered=False).order_by("-id")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
