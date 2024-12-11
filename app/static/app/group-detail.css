@@ -13,7 +13,6 @@ h1 {
 }
 
 .prayer-request {
-    list-style-type: none;
     border: 3px solid var(--primary-color);
     border-radius: 10px;
     padding: 2rem;
@@ -51,23 +50,25 @@ h1 {
     margin-left: auto;
 }
 
-a {
+.buttons > a {
     text-decoration: none;
     text-align: center;
     margin-left: 1rem;
 }
 
-@media (max-width: 875px) {
+@media (max-width: 955px) {
   .header {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: -5rem auto 0;
+    align-items: center;
   }
 
-  .buttons {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+  .header > *:nth-child(2) {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .add-button {
+    margin-top: 0;
   }
 }

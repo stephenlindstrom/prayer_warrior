@@ -1,7 +1,7 @@
 .pagination {
     display: flex;
     color: white;
-    width: 400px;
+    width: min(400px, 80%);
     background-color: var(--primary-color);
     padding: 0.5rem;
     margin-top: 1rem;
