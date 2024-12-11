@@ -96,7 +96,7 @@ class AnsweredPrayerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
     
     def get_queryset(self):
-        prayer_requests = PrayerRequest.objects.filter(user=self.request.user)
+        prayer_requests = PrayerRequest.objects.filter(user=self.request.user).order_by("-id")
         queryset = []
         for prayer_request in prayer_requests:
             if AnsweredPrayer.objects.filter(prayer_request=prayer_request).exists():

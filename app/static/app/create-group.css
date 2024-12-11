@@ -22,6 +22,9 @@
 }
 
 .add-group-form > button {
-    width: 25%
+    width: 25%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    cursor: pointer;
 }
 

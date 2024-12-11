@@ -1,6 +1,7 @@
 {% extends "app/base-list.html" %}
 
 {% load static %}
+{% load tz %}
 {% block page-style %} <link rel="stylesheet" href="{% static 'app/personal-prayer.css' %}"> {% endblock %}
 {% block script %}
     <script src="{% static 'app/javascript/delete-request.js' %}" defer></script>
@@ -24,7 +25,7 @@
         <div class="prayer-request" id="pr-{{ prayer_request.id }}">
             <div class="content-and-date">
               <p class="bold">Request</p>
-              <p class="date bold">{{ prayer_request.datetime.date }}</p>
+              <p class="date bold">{{ prayer_request.datetime|localtime|date:"M. j, Y" }}</p>
             </div>
             <br>
             <p>{{ prayer_request.content }}</p>

@@ -1,6 +1,7 @@
 {% extends "app/base-list.html" %}
 
 {% load static %}
+{% load tz %}
 {% block page-style %}<link href="{% static 'app/answered-prayer-list.css' %}" rel="stylesheet">{% endblock %}
 {% block list-content %}
 <div class="page-container">
@@ -13,14 +14,14 @@
         <div class="answered-prayer">
             <div class="title-and-date">
                 <p class="bold">Request</p>
-                <p class="bold">{{answered_prayer.prayer_request.datetime.date}}</p>
+                <p class="bold">{{answered_prayer.prayer_request.datetime|localtime|date:"M. j, Y" }}</p>
             </div>
             <br>
             <p>{{answered_prayer.prayer_request.content}} </p>
             <br>
             <div class="title-and-date">
                 <p class="bold">Answer</p>
-                <p class="bold">{{answered_prayer.datetime.date}}</p>
+                <p class="bold">{{answered_prayer.datetime|localtime|date:"M. j, Y" }}</p>
             </div>
             <br>
             <p>{{answered_prayer.content}}</p>
