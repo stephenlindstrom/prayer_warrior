@@ -26,8 +26,8 @@ This is a **Django-based web application** for managing prayer groups, prayer re
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/prayer-group-app.git
-   cd prayer-group-app
+   git clone https://github.com/stephenlindstrom/prayer-warrior.git
+   cd django-list
    ```
 
 2. **Create and Activate a Virtual Environment**
@@ -67,29 +67,32 @@ This is a **Django-based web application** for managing prayer groups, prayer re
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
-prayer-group-app/
+django-list/
 │
-├── app/                            # Main Django app
+├── app/                            
 │   ├── models.py                   # Database models
 │   ├── views.py                    # Views for handling requests
 │   ├── forms.py                    # Forms for user input
 │   ├── urls.py                     # URL configurations
-│   └── templates/app/              # HTML templates
-│
-├── prayer-group-app/               # Django project configuration
+│   ├── tests.py                    # Unit tests for the app
+│   ├── templates/app/              # HTML templates
+│   └── static/app/                 # Static files (CSS, JavaScript)
+│    
+├── list/               
 │   ├── settings.py                 # Project settings
 │   └── urls.py                     # Project-wide URL configurations
 │
 ├── manage.py                       # Django management script
 └── requirements.txt                # Python dependencies
+
 ```
 
 ---
 
-## ⚙️ Key Views and Their Functionality
+## Key Views and Their Functionality
 
 ### `NewLoginView`
 - **Purpose**: Custom login view.
@@ -97,43 +100,47 @@ prayer-group-app/
 
 ### `IndexView`
 - **Purpose**: Home page for logged-in users.
-- **URL**: `/`
+- **URL**: `/app/`
 
 ### `PersonalPrayerView`
-- **Purpose**: View personal prayer requests (paginated).
-- **URL**: `/personal-prayers/`
+- **Purpose**: View personal prayer requests.
+- **URL**: `/app/personal-prayer/`
 
 ### `AddPrayerRequestView`
 - **Purpose**: Add a new prayer request.
-- **URL**: `/prayer-request/add/`
+- **URL**: `/app/prayer-request/`
 
 ### `PrayerRequestDeleteView`
 - **Purpose**: Delete a personal prayer request.
-- **URL**: `/prayer-request/delete/<id>/`
+- **URL**: `/app/delete-prayer-request/<id>/`
+
+### `AddAnsweredPrayerView`
+- **Purpose**: Mark prayer request as answered.
+- **URL**: `/app/add-answered-prayer/<id>/`
 
 ### `AnsweredPrayerListView`
 - **Purpose**: List answered prayers.
-- **URL**: `/answered-prayers/`
+- **URL**: `app/answered-prayer-list/`
 
 ### `CreateGroupView`
-- **Purpose**: Create a new group and add the user to it.
-- **URL**: `/group/create/`
+- **Purpose**: Create a new group and add the owner to it.
+- **URL**: `app/create-group/`
 
 ### `GroupListView`
 - **Purpose**: List groups the user belongs to.
-- **URL**: `/groups/`
+- **URL**: `app/group-prayers/`
 
 ### `GroupDetailView`
-- **Purpose**: View group details and associated prayers.
-- **URL**: `/group/<id>/`
+- **Purpose**: View all prayer requests associated with group.
+- **URL**: `app/group-prayers/<group_id>/`
 
 ### `AddMemberView`
 - **Purpose**: Add a new member to a group.
-- **URL**: `/group/<group_id>/add-member/`
+- **URL**: `/app/group-prayers/<group_id>/add-member/`
 
 ---
 
-## 📝 Models Overview
+## Models Overview
 
 ### `PrayerRequest`
 - **Fields**: `user`, `content`, `answered`, `datetime`
@@ -153,49 +160,39 @@ prayer-group-app/
 
 ---
 
-## ✅ Usage Instructions
+## Usage Instructions
 
-1. **Register an Account**: Go to `/register/` to create an account.
+1. **Register an Account**: Go to `/app/register/` to create an account.
 2. **Log In**: Log in via `/login/`.
-3. **Add a Prayer Request**: Navigate to `/prayer-request/add/` to submit a new prayer.
-4. **Create a Group**: Go to `/group/create/` to create a new group.
-5. **View Groups**: Access your groups at `/groups/`.
-6. **Add Members**: Add members to your group via `/group/<group_id>/add-member/`.
+3. **Add a Prayer Request**: Navigate to `/app/prayer-request/` to submit a new prayer.
+4. **Create a Group**: Go to `/app/create-group/` to create a new group.
+5. **View Groups**: Access your groups at `/app/group-prayers/`.
+6. **Add Members**: Add members to your group via `/app/group-prayers/<group_id>/add-member/`.
 
 ---
 
-## 💻 Technologies Used
+## Technologies Used
 
 - **Django**: Web framework
 - **SQLite**: Default database (can be replaced with PostgreSQL or MySQL)
-- **Bootstrap**: Frontend styling (if applicable)
 - **FontAwesome**: Icons for UI elements
 
 ---
 
-## 💜 License
+## License
 
 This project is licensed under the **MIT License**. You are free to use, modify, and distribute it.
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
-Special thanks to all contributors and the Django community for their support and resources.
-
----
-
-## 🐛 Troubleshooting
-
-- **Login Issues**: Ensure your credentials are correct. Reset your password if needed.
-- **Database Issues**: Run `python manage.py migrate` to apply migrations.
-- **Static Files**: Collect static files with `python manage.py collectstatic`.
+Special thanks to the Django community for their support and resources.
 
 ---
 
-## 📩 Contact
+## Contact
 
 For questions or contributions, please contact:
 
-- **Email**: `your-email@example.com`
-- **GitHub**: [https://github.com/your-username](https://github.com/your-username)
+- **GitHub**: [https://github.com/stephenlindstrom](https://github.com/stephenlindstrom)
