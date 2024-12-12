@@ -63,7 +63,7 @@ This is a **Django-based web application** for managing prayer groups, prayer re
 
 7. **Access the Application**
 
-   Open your browser and go to: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+   Open your browser and go to: [http://127.0.0.1:8000/app/](http://127.0.0.1:8000/app/)
 
 ---
 
