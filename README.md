@@ -179,12 +179,6 @@ django-list/
 
 ---
 
-## License
-
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute it.
-
----
-
 ## Acknowledgements
 
 Special thanks to the Django community for their support and resources.
