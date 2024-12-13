@@ -11,13 +11,14 @@
             <label for="group-name">Group name:</label>
             <input type="text" name="name" id="group-name" required>    
         </div>
-        <button type="Submit" class="form-item">Submit</button>
+        <button type="submit" class="form-item">Submit</button>
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif %}
     </form>
 </div>
-{% if messages %}
-    {% for message in messages %}
-        {{ message }}
-    {% endfor %}
-{% endif %}
+
 
 {% endblock %}

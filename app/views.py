@@ -1,13 +1,10 @@
-from django.db.models.query import QuerySet
-from django.forms import BaseModelForm
-from django.shortcuts import get_object_or_404, redirect, render
-from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User, Group
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
 
