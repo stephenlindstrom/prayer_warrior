@@ -149,7 +149,8 @@ class GroupDetailView(LoginRequiredMixin, UserPassesTestMixin, generic.DetailVie
         prayer_keys = GroupPrayerManager.objects.filter(group=group_id)
         context["prayer_list"] = []
         for prayer_key in prayer_keys:
-            context["prayer_list"].append(prayer_key.prayer_request)
+            if not prayer_key.prayer_request.answered:
+              context["prayer_list"].append(prayer_key.prayer_request)
         return context
 
 class AddMemberView(LoginRequiredMixin, UserPassesTestMixin, generic.FormView):
