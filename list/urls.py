@@ -20,7 +20,7 @@ from app.views import NewLoginView
 from django.urls import include, path
 
 urlpatterns = [
-    path("app/", include("app.urls")),
+    path("", include("app.urls")),
     path("admin/", admin.site.urls),
     path("login/", NewLoginView.as_view(), name="login"),
     path("logout/", views.LogoutView.as_view(), name="logout"),
