@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-=t9!^1rd)mvo#yy+hk6t5v^e$1s624#le9z3i^rl8)rg-sntv%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['prayer-warrior-app-d9809c63979b.herokuapp.com']
+
 
 
 # Application definition
