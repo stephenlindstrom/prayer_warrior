@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--background-color);
+    background-image: none;
+}
+
+.page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+}
+
+.logo, .form-box {
+    margin: 10rem 5rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.images {
+    display: flex;
+    justify-content: center;
+}
+
+.form-box {
+    height: 275px;
+    width: 350px;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 5px;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    width: 300px;
+    height: 2.5rem;
+    font-size: 1.15rem;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+button {
+    color: white;
+    height: 2.5rem;
+    border-radius: 5px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    width: 300px;
+}
+.registration-info > button {
+    background-color: var(--primary-color);
+}
+
+.registration-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.registration-info .flex-item {
+    margin-top: 0.5rem;
+}
+
+a > button {
+    background-color: var(--accent-color);
+    width: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    margin-top: 1rem;
+}
+
+hr {
+    border-top: 1px solid black;
+    width: 300px;
+    margin-top: 2rem;
+}
+
+.messages {
+    text-align: center;
+}
+
+.messages > p {
+    font-weight: 500;
+}
+
+@media (max-width: 1300px) {
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .logo {
+        margin: 5rem 0 0 0;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .form-box {
+        margin: 2rem 0 0 0;
+    }
+}

@@ -1,0 +1,74 @@
+#content {
+    margin-top: 12rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prayer-request {
+    border: 3px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 80vw;
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.header {
+    margin-top: -5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    justify-items: center;
+    width: 80vw;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+
+.header > *:nth-child(1) {
+    grid-column-start: 2;
+}
+
+.header > *:nth-child(2) {
+    margin-left: auto;
+}
+
+.buttons > a {
+    text-decoration: none;
+    text-align: center;
+    margin-left: 1rem;
+}
+
+@media (max-width: 955px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header > *:nth-child(2) {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .add-button {
+    margin-top: 0;
+  }
+}

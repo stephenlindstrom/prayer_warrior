@@ -1,0 +1,60 @@
+#content {
+    margin-top: 7rem;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.prayer-request-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    height: 600px;
+    width: 900px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.prayer-content {
+  width: 603px;
+  height: 225px;
+  resize: none;
+  padding: 5px 10px;
+}
+
+.group-selection {
+  width: 351px;
+  height: 100px;
+  padding: 2px 5px;
+}
+
+button {
+  padding: 3px 5px;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+@media (max-width: 1125px) {
+  .prayer-request-form {
+    width: 80vw;
+  }
+
+  .prayer-content {
+    width: 67%;
+  }
+
+  .group-selection {
+    width: 39%;
+  }
+}

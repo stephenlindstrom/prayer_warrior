@@ -1,0 +1,36 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.add-member-form {
+  margin-top: 12rem;
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  height: 150px;
+  width: min(600px, 80vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 90%);
+}
+
+input {
+  height: 1.5rem;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.add-member-form > button {
+  padding: 3px 5px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  cursor: pointer;
+  border-radius: 3px;
+}

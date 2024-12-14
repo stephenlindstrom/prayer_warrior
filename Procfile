@@ -1,1 +1,1 @@
-web: gunicorn django-list.wsgi
+web: gunicorn list.wsgi
