@@ -7,6 +7,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic.edit import CreateView, DeleteView
+from operator import attrgetter
 
 from .forms import AnsweredPrayerForm, RegistrationForm, AddMemberForm, PrayerRequestForm, DeleteForm
 from .models import AnsweredPrayer, PrayerRequest, GroupPrayerManager
@@ -27,7 +28,7 @@ class PersonalPrayerView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        return PrayerRequest.objects.filter(user=self.request.user, answered=False).order_by("-id")
+        return PrayerRequest.objects.filter(user=self.request.user, answered=False).order_by("-datetime")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -93,12 +94,13 @@ class AnsweredPrayerListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 6
     
     def get_queryset(self):
-        prayer_requests = PrayerRequest.objects.filter(user=self.request.user).order_by("-id")
+        prayer_requests = PrayerRequest.objects.filter(user=self.request.user).order_by("-datetime")
         queryset = []
         for prayer_request in prayer_requests:
             if AnsweredPrayer.objects.filter(prayer_request=prayer_request).exists():
                 queryset.append(AnsweredPrayer.objects.get(prayer_request=prayer_request))
-        return queryset
+            sorted_queryset = sorted(queryset, key=attrgetter('datetime'), reverse=True)
+        return sorted_queryset
 
 class RegistrationView(SuccessMessageMixin, CreateView):
     template_name= "app/register.html"
