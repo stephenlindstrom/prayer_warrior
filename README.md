@@ -16,7 +16,7 @@ This is a **Django-based web application** for managing prayer groups, prayer re
 ## Demo
 
 You can explore a live demo of the application here:  
-🔗 [Live App on Heroku](https://prayer-warrior-app.herokuapp.com)
+🔗 [Live App on Heroku](https://prayer-warrior-app-d9809c63979b.herokuapp.com/login/?next=/)
 
 To log in as a test user:
 
